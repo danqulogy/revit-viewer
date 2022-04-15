@@ -40,6 +40,18 @@ class AppMain extends Component{
     console.log('Loaded model: ', model);
   }
 
+  getForgeToken(){
+     /* Normally, this would call an endpoint on your server to generate a public
+    access token (using your client id and sercret). Doing so should yield a
+    response that looks something like the following...
+    */
+    return {
+      access_token:'INSERT_YOUR_FORGE_ACCESS_TOKEN',
+      expires_in: 'INSERT_TOKEN_EXPIRATION',
+      token_type: "Bearer"
+    };
+  }
+
 }
 
 
