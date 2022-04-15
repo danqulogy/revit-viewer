@@ -1,6 +1,7 @@
 import logo from './logo.svg';
 import './App.css';
 import { Component } from 'react';
+import ForgeViewer from 'react-forge-viewer'
 
 class AppMain extends Component{
 
@@ -36,6 +37,10 @@ class AppMain extends Component{
     console.log('Error loading a document')
   }
 
+  handleModelError(viewer, error){
+    console.log('Error loading the model.');
+  }
+  
   handleModelLoaded(viewer, model){
     console.log('Loaded model: ', model);
   }
@@ -64,6 +69,25 @@ class AppMain extends Component{
     }
   }
 
+  render() {
+    return (
+      <div className="App">
+        <ForgeViewer
+          version="6.0"
+          urn=''
+          view={this.state.view}
+          headless={false}
+          onViewerError={this.handleViewerError.bind(this)}
+          onTokenRequest={this.handleTokenRequested.bind(this)}
+          onDocumentLoad={this.handleDocumentLoaded.bind(this)}
+          onDocumentError={this.handleDocumentError.bind(this)}
+          onModelLoad={this.handleModelLoaded.bind(this)}
+          onModelError={this.handleModelError.bind(this)}
+        />
+      </div>
+    );
+  }
+
 }
 
 
@@ -71,20 +95,7 @@ class AppMain extends Component{
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <AppMain/>
     </div>
   );
 }
