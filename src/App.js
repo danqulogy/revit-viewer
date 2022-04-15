@@ -52,6 +52,18 @@ class AppMain extends Component{
     };
   }
 
+   /* Once the viewer has initialized, it will ask us for a forge token so it can
+  access the specified document. */
+  handleTokenRequested(onAccessToken){
+    console.log('Token requested by the viewer.');
+    if(onAccessToken){
+      let token = this.getForgeToken();
+      if(token)
+        onAccessToken(
+          token.access_token, token.expires_in);
+    }
+  }
+
 }
 
 
