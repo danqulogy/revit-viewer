@@ -36,6 +36,10 @@ class AppMain extends Component{
     console.log('Error loading a document')
   }
 
+  handleModelLoaded(viewer, model){
+    console.log('Loaded model: ', model);
+  }
+
 }
 
 
